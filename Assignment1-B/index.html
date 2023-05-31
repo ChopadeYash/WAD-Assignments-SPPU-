@@ -1,0 +1,160 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Assignment 1b Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-
+alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        form,
+        h1 {
+            width: 30%;
+            margin: 5% auto;
+            /* margin-left: 225px; */
+        }
+
+        input {
+            margin: 2%;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            /* background: linear-gradient(135deg,#00416A, #e5e4e6); */
+            background-color: #00416A;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .container .title {
+            font-size: 25px;
+            text-align: center;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .content form .user-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: calc(100% / 2 - 20px);
+        }
+
+        form .input-box span.details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        form .button input {
+            height: 100%;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">REGISTRATION</h1>
+        <div class="content">
+            <form action="" method="POST">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details" style="width: 100px; margin-left: -60px;">First Name</span>
+                        <!-- <label>First Name</label> -->
+                        <input type="text" name="fullName" id="fullName"  pattern="[A-Za-z ]*" class="form-control" required style="width: 250px; margin-left: -150px;">
+                    </div>
+                    <div class="input-box">
+                        <!-- <label>Email</label> -->
+                        <span class="details" style="margin-left: 90px;">UserName</span>
+                        <input type="email" name="userEmail" id="userEmail" class="form-control" required
+                        style="width: 250px; margin-left: 10px;">
+                    </div>
+                    <div class="input-box">
+                        <!-- <label>User Name</label> -->
+                        <span class="details" style="width: 100px; margin-left: -60px;">Email</span>
+                        <input type="text" name="userName" id="userName" class="form-control" required
+                            style="width: 250px; margin-left: -150px;">
+                    </div>
+                    <div class="input-box">
+                        <!-- <label>Password</label> -->
+                        <span class="details" style="margin-left: 90px;">Password</span>
+                        <input type="password" name="userPassword" id="userPassword" class="form-control" required style="width: 250px; margin-left: 10px;">
+                    </div>
+                    <input type="button" onclick="submitForm()" name="submit" value="SUBMIT
+DETAILS" id="submit" class="btn btn-primary w-100">
+                </div>
+        </div>
+        </form>
+    </div>
+    <!-- <div id="outputs"></div> -->
+    <script>
+        function submitForm() {
+            var name = $('input[name=fullName]').val();
+            var email = $('input[name=userEmail]').val();
+            var username = $('input[name=userName]').val();
+            var password = $('input[name=userPassword]').val();
+
+            var formData = 'name=' + name + '&email=' + email + '&username=' + username;
+            $.ajax({
+                type: "POST",
+                url: "output.php",
+                data: formData,
+            }).done(function (response) {
+                //$("#outputs").html(response);
+                var new_window = window.open(null, '', '_blank');
+                new_window.document.write(response);
+            });
+        }
+    </script>
+</body>
+
+</html>
